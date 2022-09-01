@@ -2,18 +2,19 @@
 // Created by tammd on 8/26/22.
 //
 
-
-#include <network/connection_key.hpp>
-#include <regex>
-#include <boost/asio/error.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/asio/error.hpp>
+#include <network/connection_key.hpp>
+
+#include <regex>
 
 namespace network::http
 {
 
-connection_key connection_key::parse_url(std::string const& url)
+connection_key
+connection_key::parse_url(std::string const &url)
 {
-        static auto url_regex =
+    static auto url_regex =
         std::regex(R"regex((http|https)://([^/ :]+):?([^/ ]*)((/?[^ #?]*)\x3f?([^ #]*)#?([^ ]*)))regex",
                    std::regex_constants::icase | std::regex_constants::optimize);
     std::smatch match;
@@ -24,15 +25,11 @@ connection_key connection_key::parse_url(std::string const& url)
     auto &host     = match[2];
     auto &port_ind = match[3];
     auto &target   = match[4];
-    /*
-    auto &path     = match[5];
-    auto &query    = match[6];
-    auto &fragment = match[7];
-    */
-    return connection_key {  .hostname_ = host.str(),
-                             .service_  = deduce_port(protocol, port_ind),
-                             .scheme_   = deduce_scheme(protocol, port_ind),
-                             .target_ = target };
+
+    return connection_key { .hostname_ = host.str(),
+                            .service_  = deduce_port(protocol, port_ind),
+                            .scheme_   = deduce_scheme(protocol, port_ind),
+                            .target_   = target };
 }
 
 std::string
@@ -81,4 +78,4 @@ deduce_scheme(std::string const &scheme, std::string const &port)
     }
 }
 
-}
+}   // namespace network::http

@@ -1,7 +1,7 @@
 message("http build")
 
 
-add_library(http http.cpp)
+add_library(http http_connection_impl.cpp event.cpp connection_key.cpp http_connection.cpp)
 target_include_directories(http PUBLIC ${CMAKE_SOURCE_DIR}/lib)
 TARGET_LINK_LIBRARIES( http  PUBLIC liburing::liburing spdlog::spdlog Boost::json date::date Boost::headers Threads::Threads util)
 
