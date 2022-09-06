@@ -20,7 +20,7 @@ execute_process(
 include(${CMAKE_BINARY_DIR}/dependencies/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 include_directories(${CONAN_INCLUDE_DIRS})
-include_directories(lib/kafka)
+include_directories(dependencies)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH};${CMAKE_BINARY_DIR}/dependencies)
 
 
