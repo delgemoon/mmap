@@ -11,7 +11,7 @@ main()
 {
     std::int64_t      ll = 0xA2345678ABCD23EF;
     std::bitset< 64 > b(ll);
-    std::cout << "i          = " << std::bitset<64>( (b)) << '\n';
+    std::cout << "i          = " << std::bitset<64>( (b ) << '\n';
     std::cout << "rotr(i,0)  = " << std::bitset<64>() << '\n';
     std::cout << "i          = " << std::bitset<64>(b) << '\n';
     std::cout << "rotr(i,1)  = " << std::bitset<64>(b >>= 8) << '\n';

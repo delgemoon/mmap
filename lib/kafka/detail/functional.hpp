@@ -6,7 +6,7 @@
 #define CONNECTOR_LIB_KAFKA_DETAIL_FUNCTIONAL_HPP_7CA0A1575F63406DB6CCCF09773A7728
 
 #include <boost/asio.hpp>
-#include <kafka/detail/endian.hpp>
+#include <kafka/detail/edian.hpp>
 #include <kafka/primitives.hpp>
 
 namespace kafka

@@ -7,7 +7,7 @@
 
 #ifdef ASIO_STANDALONE
 #include <boost/asio/error_code.hpp>
-#else
+#elif
 #include <boost/system/error_code.hpp>
 #endif
 
