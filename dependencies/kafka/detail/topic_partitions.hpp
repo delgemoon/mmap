@@ -20,7 +20,7 @@ namespace detail
     template < typename TProperties, typename TPartitions >
     struct topic : TProperties
     {
-        using optional_type = std::optional < topic< TProperties, TPartitions >;
+        using optional_type = std::optional < topic< TProperties, TPartitions > >;
         TPartitions partitions;
     };
 

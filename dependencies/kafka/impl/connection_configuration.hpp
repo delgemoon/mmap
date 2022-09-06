@@ -6,6 +6,7 @@
 #define CONNECTOR_LIB_KAFKA_IMPL_CONNECTION_CONFIGURATION_HPP_68FA677999364819BBB746F677D1DE80
 
 #include <kafka/constants.hpp>
+#include <kafka/connection_configuration.hpp>
 
 #include <string>
 
@@ -13,10 +14,10 @@ namespace kafka
 {
 
 inline connection_configuration::connection_configuration()
-: message_max_bytes(constants::kDefaultMessageMaxBytes)
-, socket_timeout(constants::kDefaultSocketTimeout)
-, client_id(constants::DefaultClientId())
-, auto_connect(constants::DefaultConnectionAutoConnect())
+: message_max_bytes_(constants::kDefaultMessageMaxBytes)
+, socket_timeout_(constants::kDefaultSocketTimeout)
+, client_id_(constants::defaultClientId())
+, auto_connect_(constants::defaultConnectionAutoConnect())
 {
 }
 
@@ -28,19 +29,19 @@ connection_configuration::set_broker_from_string(const std::string &str)
         broker_address.reset();
         return;
     }
-    BrokerAddress          broker;
+    broker_addr          broker;
     std::string::size_type delimiter_position = str.find(':');
     if (delimiter_position != std::string::npos && delimiter_position > 0 && delimiter_position < str.size() - 1)
     {
-        broker.hostname = str.substr(0, delimiter_position);
-        broker.service  = str.substr(delimiter_position + 1);
+        broker.hostname_ = str.substr(0, delimiter_position);
+        broker.service_  = str.substr(delimiter_position + 1);
     }
     else
     {
-        broker.hostname = str.substr(0, delimiter_position);
-        broker.service  = constants::DefaultKafkaService();
+        broker.hostname_ = str.substr(0, delimiter_position);
+        broker.service_  = constants::defaultKafkaService();
     }
-    if (broker.hostname.empty() || broker.service.empty())
+    if (broker.hostname_.empty() || broker.service_.empty())
     {
         return;
     }
@@ -59,8 +60,8 @@ inline void
 connection_configuration::set_broker(const Tx &hostname, const Ty &service)
 {
     broker_addr broker;
-    broker.hostname = to_string(hostname);
-    broker.service  = to_string< String >(service);
+    broker.hostname_ = to_string(hostname);
+    broker.service_  = to_string< std::string >(service);
     broker_address  = broker;
 }
 

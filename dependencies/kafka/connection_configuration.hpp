@@ -19,7 +19,7 @@ struct connection_configuration
     {
         using optional_type = std::optional< broker_addr >;
         std::string hostname_;
-        std::string service;
+        std::string service_;
     };
 
     using broker_list = std::vector< broker_addr >;
@@ -33,7 +33,7 @@ struct connection_configuration
 
     broker_addr::optional_type broker_address;
 
-    connection_configuration() = default;
+    connection_configuration();
 
     // Set the broker address using the given string.
     // If the string contain a colon, the part before the colon is interpreted
