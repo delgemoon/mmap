@@ -48,7 +48,7 @@ namespace detail
     };
     // Empty properties structure. Use this in case no properties should be added
     // to a certain data structure.
-    struct EmptyProperties
+    struct empty_properties
     {
     };
 
@@ -74,7 +74,7 @@ namespace detail
     // ```
     //
     template < typename TTopicProperties, typename TPartitionProperties >
-    struct topic_partition_map
+    struct topics_partitions_map
     {
         using partition_type  = partition< TPartitionProperties >;
         using partitions_type = std::map< int32, partition_type >;
@@ -110,11 +110,11 @@ namespace detail
     // ```
     //
     template < typename TTopicProperties, typename TPartitionProperties >
-    struct TopicsPartitionsVector
+    struct topics_partitions_vector
     {
         using partition_type   = partition< vector_partition_properties< TPartitionProperties > >;
-        using poartitions_type = std::vector< partition_type >;
-        using topic_type       = topic< vector_topic_properties< TTopicProperties >, poartitions_type >;
+        using partitions_type = std::vector< partition_type >;
+        using topic_type       = topic< vector_topic_properties< TTopicProperties >, partitions_type >;
         using topics_type      = std::vector< topic_type >;
     };
 }   // namespace detail
