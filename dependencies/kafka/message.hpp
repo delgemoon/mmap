@@ -47,8 +47,9 @@ struct message
     bytes &
     mutate_value();
 
-      // Compressed messages contain a nested message set
-    const message_set& nested_message_set() const;
+    // Compressed messages contain a nested message set
+    const message_set &
+    nested_message_set() const;
 
     message_set &
     mutable_nested_message_set();

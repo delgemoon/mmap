@@ -22,8 +22,7 @@ namespace detail
     be_to_host_64(int64 ll)
     {
         if constexpr (std::endian::native == std::endian::little)
-            ll = (((uint64_t) htonl((uint32_t) ((ll << 32) >> 32))) << 32) |
-                 (uint32_t) htonl((uint32_t) (ll >> 32));
+            ll = (((uint64_t)htonl((uint32_t)((ll << 32) >> 32))) << 32) | (uint32_t)htonl((uint32_t)(ll >> 32));
         return ll;
     }
 

@@ -20,7 +20,7 @@ namespace detail
     template < typename TProperties, typename TPartitions >
     struct topic : TProperties
     {
-        using optional_type = std::optional < topic< TProperties, TPartitions > >;
+        using optional_type = std::optional< topic< TProperties, TPartitions > >;
         TPartitions partitions;
     };
 
@@ -112,10 +112,10 @@ namespace detail
     template < typename TTopicProperties, typename TPartitionProperties >
     struct topics_partitions_vector
     {
-        using partition_type   = partition< vector_partition_properties< TPartitionProperties > >;
+        using partition_type  = partition< vector_partition_properties< TPartitionProperties > >;
         using partitions_type = std::vector< partition_type >;
-        using topic_type       = topic< vector_topic_properties< TTopicProperties >, partitions_type >;
-        using topics_type      = std::vector< topic_type >;
+        using topic_type      = topic< vector_topic_properties< TTopicProperties >, partitions_type >;
+        using topics_type     = std::vector< topic_type >;
     };
 }   // namespace detail
 }   // namespace kafka
