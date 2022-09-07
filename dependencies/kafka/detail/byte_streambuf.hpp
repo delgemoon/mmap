@@ -12,9 +12,15 @@ namespace kafka
 {
 namespace detail
 {
-struct streambuf : public std::streambuf
+struct byte_streambuf : public std::streambuf
 {
+public:
+  explicit byte_streambuf(bytes data);
 
+  bytes data() const;
+
+private:
+  bytes data_;
 };
 }
 }

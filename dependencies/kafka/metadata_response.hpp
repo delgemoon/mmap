@@ -59,7 +59,7 @@ public:
 
   const topic_t& topics() const;
 
-  broker_s::optional_type PartitionLeader(const std::string& topic,
+  broker_s::optional_type partition_leader(const std::string& topic,
                                        int32 partition) const;
 
 private:

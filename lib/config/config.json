@@ -28,7 +28,10 @@
         "api_key": "blabla",
         "api_secret": "alibabla",
         "subaccount" : "name"
-      }
+      },
+      "ws_url": "",
+      "rest_url" : "",
+      "fix_url": ""
     }
   },
   "database": {

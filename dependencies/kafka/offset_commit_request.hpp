@@ -36,7 +36,7 @@ struct offset_commit_request :
 
 public:
   using response_type_t = offset_commit_request;
-  using mutable_response_type_t = MutableOffsetCommitResponse;
+  using mutable_response_type_t = mutable_offset_commit_response;
   using topic_t = topics_partitions::topic_type;
   using partition_t = topics_partitions::partition_type;
   using topics_t = topics_partitions::topics_type;
