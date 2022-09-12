@@ -24,8 +24,8 @@ struct fetch_request : public request< fetch_request >
 
     struct partition_properties
     {
-        int64 fetch_offset;
-        int32 max_bytes;
+        int64 fetch_offset_;
+        int32 max_bytes_;
     };
 
     using topics_partitions = detail::topics_partitions_vector< detail::empty_properties, partition_properties >;

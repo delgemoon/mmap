@@ -23,9 +23,9 @@ struct offset_fetch_response : public response< offset_fetch_response >
 
     struct partition_properties
     {
-        int64       offset;
-        std::string metadata;
-        int16       error_code;
+        int64       offset_;
+        std::string metadata_;
+        int16       error_code_;
     };
 
     using topics_partitions_t = detail::topics_partitions_map< detail::empty_properties, partition_properties >;
@@ -43,7 +43,7 @@ struct offset_fetch_response : public response< offset_fetch_response >
     topics_t topics_;
 };
 
-struct mutable_offset_fetchResponse : public mutable_response< offset_fetch_response >
+struct mutable_offset_fetch_response : public mutable_response< offset_fetch_response >
 {
   public:
     offset_fetch_response::topics_t &

@@ -22,9 +22,9 @@ struct fetch_response : public response< fetch_response >
 
     struct partition_properties
     {
-        int16       error_code;
-        int64       highwater_mark_offset;
-        message_set messages;
+        int16       error_code_;
+        int64       highwater_mark_offset_;
+        message_set messages_;
     };
 
     using topics_partitions = detail::topics_partitions_map< detail::empty_properties, partition_properties >;
@@ -34,9 +34,16 @@ struct fetch_response : public response< fetch_response >
     using partition_t  = topics_partitions::partition_type;
     using topics_t     = topics_partitions::topics_type;
     using partitions_t = topics_partitions::partitions_type;
+    using const_iterator = detail::fetch_response_iterator<topics_partitions>;
 
     const topics_t &
     topics() const;
+
+      // Start iterator, used for iterating over all received messages
+  const_iterator begin() const;
+
+  // End iterator
+  const_iterator end() const;
 
   private:
     topics_t topics_;
@@ -48,5 +55,6 @@ struct mutable_fetch_response : public mutable_response< fetch_response >
     fetch_response::topics_t &
     mutable_topics();
 };
+
 }   // namespace kafka
 #endif   // CONNECTOR_DEPENDENCIES_KAFKA_FETCH_RESPONSE_HPP_74BAAC7487184A90B59F06DC0D0C7B2E

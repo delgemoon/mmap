@@ -21,13 +21,13 @@ struct produce_response : public response< produce_response >
 {
     friend class mutable_produce_response;
 
-    struct PartitionProperties
+    struct partition_properties
     {
-        int16 error_code;
-        int64 offset;
+        int16 error_code_;
+        int64 offset_;
     };
 
-    using topics_partition = detail::topics_partitions_map< detail::empty_properties, PartitionProperties >;
+    using topics_partition = detail::topics_partitions_map< detail::empty_properties, partition_properties >;
 
   public:
     using topic_t      = topics_partition::topic_type;
@@ -41,7 +41,7 @@ struct produce_response : public response< produce_response >
         return topics_;
     }
 
-    topic_t
+    topic_t::optional_type
     find_topic(const std::string &topic_name) const;
 
     partition_t::optional_type
@@ -62,5 +62,8 @@ struct mutable_produce_response : public mutable_response< produce_response >
 };
 
 }   // namespace kafka
+
+
+#include <kafka/impl/produce_response.hpp>
 
 #endif   // CONNECTOR_LIB_KAFKA_PRODUCE_RESPONSE_HPP_3358149E7EDF4C9FA9E7B9ADB34D9677

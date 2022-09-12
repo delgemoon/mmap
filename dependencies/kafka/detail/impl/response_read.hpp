@@ -13,7 +13,7 @@ namespace kafka::detail
 {
 
 inline int8
-read_int_8(std::istream &is)
+read_int8(std::istream &is)
 {
     int8 result = 0;
     is.read(reinterpret_cast< char * >(&result), sizeof(int8));
@@ -21,7 +21,7 @@ read_int_8(std::istream &is)
 }
 
 inline int16
-read_int_16(std::istream &is)
+read_int16(std::istream &is)
 {
     int16 result = 0;
     is.read(reinterpret_cast< char * >(&result), sizeof(int16));
@@ -30,7 +30,7 @@ read_int_16(std::istream &is)
 }
 
 inline int32
-read_int_32(std::istream &is)
+read_int32(std::istream &is)
 {
     int32 result = 0;
     is.read(reinterpret_cast< char * >(&result), sizeof(int32));
@@ -39,7 +39,7 @@ read_int_32(std::istream &is)
 }
 
 inline int64
-read_int_64(std::istream &is)
+read_int64(std::istream &is)
 {
     int64 result = 0;
     is.read(reinterpret_cast< char * >(&result), sizeof(int64));
@@ -50,7 +50,7 @@ read_int_64(std::istream &is)
 inline std::string
 read_string(std::istream &is)
 {
-    int16 length = read_int_16(is);
+    int16 length = read_int16(is);
     if (length > 0)
     {
         std::string result(length, '\0');
@@ -63,7 +63,7 @@ read_string(std::istream &is)
 inline void
 read_bytes(std::istream &is, bytes &bytes)
 {
-    int32 length = read_int_32(is);
+    int32 length = read_int32(is);
     if (length > 0)
     {
         bytes.reset(new bytes::element_type(length, 0));
@@ -75,7 +75,7 @@ template < typename TMutableResponse >
 void
 read_response(std::istream &is, TMutableResponse &response, boost::system::error_code &ec)
 {
-    response.set_correlation_id(read_int_32(is));
+    response.set_correlation_id(read_int32(is));
     read_response_message(is, response, ec);
 }
 

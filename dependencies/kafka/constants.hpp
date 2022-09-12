@@ -65,7 +65,7 @@ defaultKafkaService()
     return service;
 }
 
-enum class metadata_Leader
+enum metadata_Leader
 {
     kMetadataLeaderUndecided = -1
 };

@@ -21,7 +21,7 @@ struct mutable_response;
 template < typename TResponse >
 struct response
 {
-    friend class mutable_response< TResponse >;
+    friend struct mutable_response< TResponse >;
 
   public:
     using ptional_type = std::optional< TResponse >;

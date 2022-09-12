@@ -21,7 +21,7 @@ namespace detail
     struct topic : TProperties
     {
         using optional_type = std::optional< topic< TProperties, TPartitions > >;
-        TPartitions partitions;
+        TPartitions partitions_;
     };
 
     // Basic `Partition` structure.
@@ -36,7 +36,7 @@ namespace detail
     template < typename TProperties >
     struct vector_topic_properties : TProperties
     {
-        std::string topic_name;
+        std::string topic_name_;
     };
 
     // Used by the `TopicsPartitionsVector` to add a `partition` property to
@@ -44,7 +44,7 @@ namespace detail
     template < typename TProperties >
     struct vector_partition_properties : TProperties
     {
-        int32 partition;
+        int32 partition_;
     };
     // Empty properties structure. Use this in case no properties should be added
     // to a certain data structure.

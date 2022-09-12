@@ -9,10 +9,9 @@
 
 #include <streambuf>
 
-namespace kafka
+namespace kafka::detail
 {
-namespace detail
-{
+
     struct byte_streambuf : public std::streambuf
     {
       public:
@@ -24,6 +23,9 @@ namespace detail
       private:
         bytes data_;
     };
-}   // namespace detail
+
 }   // namespace kafka
+
+#include <kafka/detail/impl/byte_streambuf.hpp>
+
 #endif   // CONNECTOR_DEPENDENCIES_KAFKA_DETAIL_BYTE_STREAMBUF_HPP_2ECA93083F66454C8AAB559B8783767A

@@ -17,7 +17,7 @@ namespace kafka
 {
 struct message
 {
-    message() = default;
+    message();
     message(const message &orig, bool deep = false);
     message &
     operator=(const message &rhs);
@@ -38,14 +38,14 @@ struct message
     const bytes &
     key() const;
 
-    bytes
-    mutate_key();
+    bytes &
+    mutable_key();
 
     const bytes &
     value() const;
 
     bytes &
-    mutate_value();
+    mutable_value();
 
     // Compressed messages contain a nested message set
     const message_set &
@@ -66,7 +66,7 @@ struct message
 
 struct message_and_offset : public message
 {
-    message_and_offset() = default;
+    message_and_offset() ;
     message_and_offset(const message &m, int64 offset);
 
     int64
@@ -80,5 +80,7 @@ struct message_and_offset : public message
 };
 
 }   // namespace kafka
+
+#include <kafka/impl/message.hpp>
 
 #endif   // CONNECTOR_LIB_KAFKA_MESSAGE_HPP_B6493B476F3747D49A329838C014C902

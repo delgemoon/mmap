@@ -25,15 +25,15 @@ struct metadata_response : public response< metadata_response >
     {
         using replicas_vector = std::vector< int32 >;
         using isr_vector      = std::vector< int32 >;
-        int16           error_code;
-        int32           leader;
-        replicas_vector replicas;
-        isr_vector      isr;
+        int16           error_code_;
+        int32           leader_;
+        replicas_vector replicas_;
+        isr_vector      isr_;
     };
 
     struct topic_properties
     {
-        int16 error_code;
+        int16 error_code_;
     };
 
     using topics_partitions = detail::topics_partitions_map< topic_properties, partition_properties >;
@@ -42,9 +42,9 @@ struct metadata_response : public response< metadata_response >
     struct broker_s
     {
         using optional_type = std::optional< broker_s >;
-        int32       node_id;
-        std::string host;
-        int32       port;
+        int32       node_id_;
+        std::string host_;
+        int32       port_;
     };
     using broker_vector_t = std::vector< broker_s >;
     using topic_t         = topics_partitions::topic_type;
@@ -55,7 +55,7 @@ struct metadata_response : public response< metadata_response >
     const broker_vector_t &
     brokers() const;
 
-    const topic_t &
+    const topics_t &
     topics() const;
 
     broker_s::optional_type
@@ -63,7 +63,7 @@ struct metadata_response : public response< metadata_response >
 
   private:
     broker_vector_t brokers_;
-    topic_t         topics_;
+    topics_t         topics_;
 };
 
 struct mutable_metadata_response : public mutable_response< metadata_response >

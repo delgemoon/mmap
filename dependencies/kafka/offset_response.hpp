@@ -23,8 +23,8 @@ struct offset_response : public response< offset_response >
     struct partition_properties
     {
         using offset_vector = std::vector< int64 >;
-        int16         error_code;
-        offset_vector offsets;
+        int16         error_code_;
+        offset_vector offsets_;
     };
 
     using topics_artitions_t = detail::topics_partitions_map< detail::empty_properties, partition_properties >;
@@ -35,13 +35,13 @@ struct offset_response : public response< offset_response >
     using topics_t     = topics_artitions_t::topics_type;
     using partitions_t = topics_artitions_t::partitions_type;
 
-    const topic_t &
+    const topics_t &
     topics() const;
 
     // Search for offset data inside this response object for the given topic
     // and partition. If no such data can be found, the return value is empty.
     partition_t::optional_type
-    TopicPartitionOffset(const std::string &topic_name, int32 partition) const;
+    topic_partition_offset(const std::string &topic_name, int32 partition) const;
 
   private:
     topics_t topics_;

@@ -31,16 +31,16 @@ struct mutable_offset_fetch_response;
 namespace detail
 {
     int8
-    read_int_8(std::istream &is);
+    read_int8(std::istream &is);
 
     int16
-    read_int_16(std::istream &is);
+    read_int16(std::istream &is);
 
     int32
-    read_int_32(std::istream &is);
+    read_int32(std::istream &is);
 
     int64
-    read_int_64(std::istream &is);
+    read_int64(std::istream &is);
 
     std::string
     read_string(std::istream &is);
@@ -83,4 +83,8 @@ namespace detail
 
 }   // namespace detail
 }   // namespace kafka
+
+
+#include <kafka/detail/impl/response_read.hpp>
+
 #endif   // CONNECTOR_LIB_KAFKA_DETAIL_RESPONSE_READ_HPP_23A67F2138D3407BB432E92A297E6F5D

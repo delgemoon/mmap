@@ -5,7 +5,6 @@
 #ifndef CONNECTOR_LIB_KAFKA_PRODUCT_REQUEST_HPP_2384E7A997EC479184C7A5F9F3A8E6F2
 #define CONNECTOR_LIB_KAFKA_PRODUCT_REQUEST_HPP_2384E7A997EC479184C7A5F9F3A8E6F2
 
-#include <kafka/detail/functional.hpp>
 #include <kafka/detail/topics_partitions.hpp>
 #include <kafka/message.hpp>
 #include <kafka/primitives.hpp>
@@ -26,7 +25,7 @@ struct produce_request : public request< produce_request >
 
     struct partition_properties
     {
-        message_set messages;
+        message_set messages_;
     };
 
     using TopicsPartitions = detail::topics_partitions_vector< detail::empty_properties, partition_properties >;
@@ -106,5 +105,8 @@ struct produce_request : public request< produce_request >
 };
 
 }   // namespace kafka
+
+#include <kafka/impl/produce_request.hpp>
+
 
 #endif   // CONNECTOR_LIB_KAFKA_PRODUCT_REQUEST_HPP_2384E7A997EC479184C7A5F9F3A8E6F2

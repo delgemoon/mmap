@@ -5,31 +5,29 @@
 #ifndef CONNECTOR_LIB_KAFKA_DETAIL_REQUEST_WRITE_HPP_E377F88C12AE4ADDACBF685DE15217AF
 #define CONNECTOR_LIB_KAFKA_DETAIL_REQUEST_WRITE_HPP_E377F88C12AE4ADDACBF685DE15217AF
 
-#include <kafka/message.hpp>
-#include <kafka/message_fwd.hpp>
 #include <kafka/primitives.hpp>
-
+#include <kafka/message_fwd.hpp>
 #include <string>
 
-namespace kafka
+namespace kafka::detail
 {
 
-class metadata_request;
+struct metadata_request;
 
-class produce_request;
+struct produce_request;
 
-class fetch_request;
+struct fetch_request;
 
-class offset_request;
+struct offset_request;
 
-class consumer_metadata_request;
+struct consumer_metadata_request;
 
-class offset_commit_request;
+struct offset_commit_request;
 
-class OffsetFetchRequest;
 
-namespace detail
-{
+struct offset_fetch_request;
+
+
 
     int32
     string_wire_size(const std::string &str);
@@ -60,13 +58,13 @@ namespace detail
     request_message_wire_size(const offset_request &request);
 
     int32
-    RequestMessageWireSize(const consumer_metadata_request &request);
+    request_message_wire_size(const consumer_metadata_request &request);
 
     int32
-    RequestMessageWireSize(const offset_commit_request &request);
+    request_message_wire_size(const offset_commit_request &request);
 
     int32
-    RequestMessageWireSize(const OffsetFetchRequest &request);
+    request_message_wire_size(const offset_fetch_request &request);
 
     void
     write_int8(int8 value, std::ostream &os);
@@ -115,9 +113,10 @@ namespace detail
     write_request_message(const offset_commit_request &request, std::ostream &os);
 
     void
-    write_request_message(const OffsetFetchRequest &request, std::ostream &os);
-
-}   // namespace detail
+    write_request_message(const offset_fetch_request &request, std::ostream &os);
 
 }   // namespace kafka
+
+#include <kafka/detail/impl/request_write.hpp>
+
 #endif   // CONNECTOR_LIB_KAFKA_DETAIL_REQUEST_WRITE_HPP_E377F88C12AE4ADDACBF685DE15217AF

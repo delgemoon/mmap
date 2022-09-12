@@ -20,7 +20,7 @@ struct offset_commit_response : public response< offset_commit_response >
 
     struct partition_properties
     {
-        int16 error_code;
+        int16 error_code_;
     };
 
     using topics_partitions = detail::topics_partitions_map< detail::empty_properties, partition_properties >;

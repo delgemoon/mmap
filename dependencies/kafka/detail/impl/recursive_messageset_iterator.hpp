@@ -26,7 +26,7 @@ inline recursive_message_set_iterator::recursive_message_set_iterator(const mess
     }
     else if (!outer_iterator_->nested_message_set().empty())
     {
-        inner_iterator_.reset(new inner_iterator_type::element_type(outer_iterator_->nested_message_set()));
+        inner_iterator_.reset(new inner_iterator_type_t::element_type(outer_iterator_->nested_message_set()));
     }
 }
 
@@ -38,7 +38,7 @@ inline recursive_message_set_iterator::recursive_message_set_iterator(const recu
 {
     if (orig.inner_iterator_)
     {
-        inner_iterator_.reset(new inner_iterator_type::element_type(*orig.inner_iterator_));
+        inner_iterator_.reset(new inner_iterator_type_t::element_type(*orig.inner_iterator_));
     }
 }
 
@@ -50,7 +50,7 @@ recursive_message_set_iterator::operator=(const recursive_message_set_iterator &
     outer_end_iterator_ = rhs.outer_end_iterator_;
     if (rhs.inner_iterator_)
     {
-        inner_iterator_.reset(new inner_iterator_type::element_type(*rhs.inner_iterator_));
+        inner_iterator_.reset(new inner_iterator_type_t::element_type(*rhs.inner_iterator_));
     }
     else
     {
@@ -86,7 +86,7 @@ recursive_message_set_iterator::increment()
         if (!outer_iterator_->nested_message_set().empty())
         {
             // Create a new inner iterator, if the new outer has a nested message set
-            inner_iterator_.reset(new inner_iterator_type::element_type(outer_iterator_->nested_message_set()));
+            inner_iterator_.reset(new inner_iterator_type_t::element_type(outer_iterator_->nested_message_set()));
         }
     }
 }

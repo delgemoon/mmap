@@ -24,21 +24,21 @@ struct offset_request : public request< offset_request >
     static int16
     ApiKey();
 
-    struct PartitionProperties
+    struct partition_properties_s
     {
-        int64 time;
-        int32 max_number_of_offsets;
+        int64 time_;
+        int32 max_number_of_offsets_;
     };
 
-    using topics_partitions_t = detail::topics_partitions_vector< detail::empty_properties, PartitionProperties >;
+    using topics_partitions_t = detail::topics_partitions_vector< detail::empty_properties, partition_properties_s >;
 
   public:
     using response_type_t        = offset_response;
     using mutable_esponse_type_t = mutable_offset_response;
-    using topic                  = topics_partitions_t::topic_type;
-    using partition_type_t       = topics_partitions_t::partition_type;
+    using topic_t                  = topics_partitions_t::topic_type;
+    using partition_t       = topics_partitions_t::partition_type;
     using topics_t               = topics_partitions_t::topics_type;
-    using partitions_type_t      = topics_partitions_t::partitions_type;
+    using partitions_t      = topics_partitions_t::partitions_type;
 
     int32
     replica_id() const;

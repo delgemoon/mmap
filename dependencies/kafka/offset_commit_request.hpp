@@ -25,9 +25,9 @@ struct offset_commit_request : public request< offset_commit_request >
 
     struct partition_properties
     {
-        int64       offset;
-        int64       timestamp;
-        std::string metadata;
+        int64       offset_;
+        int64       timestamp_;
+        std::string metadata_;
     };
 
     using topics_partitions = detail::topics_partitions_vector< detail::empty_properties, partition_properties >;
@@ -43,7 +43,7 @@ struct offset_commit_request : public request< offset_commit_request >
     const std::string &
     consumer_group() const;
 
-    const topic_t &
+    const topics_t &
     topics() const;
 
     void
@@ -61,7 +61,7 @@ struct offset_commit_request : public request< offset_commit_request >
 
   private:
     std::string consumer_group_;
-    topic_t     topics_;
+    topics_t     topics_;
 };
 
 }   // namespace kafka
