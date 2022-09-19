@@ -4,17 +4,18 @@
 #include <doctest/doctest.h>
 #include <kafka/detail/request_write.hpp>
 #include <kafka/detail/response_read.hpp>
+
 #include <iostream>
+#include <list>
+#include <set>
 #include <sstream>
 #include <vector>
-#include <set>
-#include <list>
 
 using namespace std::literals;
 using namespace std;
 inline constexpr const std::uint8_t operator"" _us(char s)
 {
-    return (const std::uint8_t) s;
+    return (const std::uint8_t)s;
 }
 TEST_CASE("response_read_simple")
 {
@@ -31,5 +32,3 @@ TEST_CASE("response_read_simple")
     auto int_32_value = kafka::detail::read_int32(ss);
     DOCTEST_CHECK_EQ(int_32_value, 0x12345678);
 }
-
-
