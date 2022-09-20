@@ -20,7 +20,7 @@ execute_process(
 include(${CMAKE_BINARY_DIR}/dependencies/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 include_directories(${CONAN_INCLUDE_DIRS})
-include_directories(dependencies)
+include_directories(dependencies/kafka)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH};${CMAKE_BINARY_DIR}/dependencies)
 
 
@@ -40,5 +40,6 @@ link_libraries(liburing::liburing)
 add_compile_definitions(BOOST_ASIO_HAS_IO_URING=1)
 add_compile_definitions(SPDLOG_FMT_EXTERNAL=1)
 
+add_subdirectory(dependencies/kafka/tests)
 add_subdirectory(lib)
 add_subdirectory(apps)
